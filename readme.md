@@ -1,4 +1,4 @@
 # Projekt Zaliczene:
-# autorzy: 
+# Autorzy: 
 * Zuzanna Warchala
 * Amelia Ucińska
