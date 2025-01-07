@@ -1,4 +1,4 @@
-# repozytorium 1
+# Projekt Zaliczene:
 # autorzy: 
 * Zuzanna Warchala
-* ++
+* Amelia Ucińska
