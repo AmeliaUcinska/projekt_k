@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("", views.home, name="home"), #strona domyslna
     path('persons/', views.person_list),
     path('persons/<int:pk>/', views.person_detail),
     path('persons/update/<int:pk>/', views.person_update),

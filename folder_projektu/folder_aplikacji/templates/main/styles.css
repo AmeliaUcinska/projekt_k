@@ -1,0 +1,38 @@
+
+body {
+    background-color: #efefef;
+    font-family: Arial, sans-serif;
+    color: #212121;
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic text formatting */
+h1, h2, h3, h4, h5, h6 {
+    color: #444;
+    margin: 20px 0 10px;
+}
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* Links */
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+    margin: 10px 0 10px 20px;
+}
+
+li {
+    margin: 5px 0;
+}

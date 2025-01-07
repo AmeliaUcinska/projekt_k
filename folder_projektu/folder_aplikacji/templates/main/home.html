@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<style>
+    body {
+    background-color: #f7f7f7;
+    font-family: serif, sans-serif;
+    color: #212121;
+    margin: 25px;
+    padding: 0;
+}
+
+/* Basic text formatting */
+h1, h2, h3, h4, h5, h6 {
+    color: #121212;
+    font-family: "Garamond", serif;
+    margin: 20px 0 10px;
+}
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* Links */
+a {
+    color: #ff56cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+    margin: 10px 0 10px 20px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+img {
+    margin-left: -25px;
+    margin-right: -25px;
+}
+
+</style>
+<h1>Podróż Dookoła Globu</h1>
+
+<br>
+<br>
+
+<h2>Witamy w Świecie Podróży</h2>
+    <p>Podróże otwierają nowe horyzonty i pozwalają doświadczać różnych kultur, kuchni i krajobrazów. Niezależnie od tego, czy jesteś miłośnikiem przygód, czy wolisz relaks na plaży, każdy znajdzie coś dla siebie.</p>
+    <img src="{% static 'images/adventure-2548133_1280.jpg' %}" alt="wycieczka">
+    <h3>Najlepsze Kierunki</h3>
+    <ul>
+        <li><strong>Paryż, Francja:</strong> Znany z sztuki, mody oraz ikonicznej Wieży Eiffla.</li>
+        <li><strong>Kioto, Japonia:</strong> Słynie z klasycznych świątyń buddyjskich, ogrodów, pałaców cesarskich i tradycyjnych drewnianych domów.</li>
+        <li><strong>Nowy Jork, USA:</strong> Miasto, które nigdy nie śpi, oferujące nieskończoną rozrywkę, restauracje i doświadczenia kulturalne.</li>
+        <li><strong>Rzym, Włochy:</strong> Miasto bogate w historię z zabytkami, takimi jak Koloseum, Watykan i Kaplica Sykstyńska.</li>
+        <li><strong>Sydney, Australia:</strong> Znane z Opery w Sydney, Mostu w Porcie oraz pięknych plaż.</li>
+    </ul>
+
+    <h3>Porady Podróżnicze</h3>
+    <ul>
+        <li>Zawsze miej przy sobie kopię ważnych dokumentów.</li>
+        <li>Naucz się kilku podstawowych zwrotów w lokalnym języku.</li>
+        <li>Szanuj lokalne zwyczaje i tradycje.</li>
+        <li>Pamiętaj o nawodnieniu i dbaj o swoje zdrowie.</li>
+        <li>Bądź otwarty na nowe doświadczenia i z entuzjazmem je przyjmuj.</li>
+    </ul>
+
+
+{% endblock %}
