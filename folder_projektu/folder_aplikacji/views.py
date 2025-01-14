@@ -187,3 +187,5 @@ class StanowiskoMemberView(APIView):
         osoby = Osoba.objects.filter(stanowisko=stanowisko)
         serializer = OsobaSerializer(osoby, many=True)
         return Response(serializer.data)
+def home(response):
+    return render(response, "main/home.html", {})
