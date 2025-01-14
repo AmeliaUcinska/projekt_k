@@ -77,6 +77,49 @@ img {
     margin: 10px; 
     text-align: center;
     }
+
+    /* Styl dla kontenera nadrzędnego */
+.main-container {
+    display: flex; /* Ustawienie Flexboxa */
+    justify-content: space-between; /* Rozdzielenie przestrzeni między sekcjami */
+    gap: 20px; /* Odstęp między kolumnami */
+    align-items: flex-start; /* Wyrównanie do góry */
+    margin: 20px 0;
+}
+
+/* Styl dla sekcji Najlepsze Kierunki */
+.best-destinations {
+    flex: 1; /* Pozwala sekcji zajmować równą przestrzeń */
+    background-color: #ffd4e5; /* Pudrowo-różowe tło */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Styl dla sekcji Porady Podróżnicze */
+.travel-tips-section {
+    flex: 1; /* Pozwala sekcji zajmować równą przestrzeń */
+    background-color: #d4f4ff; /* Jasny błękitny kolor tła */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Styl dla nagłówków */
+.best-destinations h3, .travel-tips-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styl dla listy porad */
+.travel-tips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.travel-tips li {
+    margin: 10px 0;
+}
+
 </style>
 <h1>Podróż Dookoła Globu</h1>
 
