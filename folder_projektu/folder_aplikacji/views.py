@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 
 # Create your views here.
 from django.shortcuts import render
@@ -8,9 +8,10 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Osoba, Person, Stanowisko, Team
+from .models import Osoba, Person, Product, Stanowisko, Team
 from .serializers import OsobaSerializer, PersonSerializer, StanowiskoSerializer
 from django.http import Http404, HttpResponse
+from .cart import Cart
 import datetime
 
 # określamy dostępne metody żądania dla tego endpointu
@@ -189,3 +190,25 @@ class StanowiskoMemberView(APIView):
         return Response(serializer.data)
 def home(response):
     return render(response, "main/home.html", {})
+
+def cart_add(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.add(product=product, quantity=1)
+    return redirect('cart_detail')
+
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return redirect('cart_detail')
+
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, 'folder_aplikacji/cart/detail.html', {'cart': cart})
+
+def cart_clear(request):
+    """Clear the shopping cart."""
+    if 'cart' in request.session:
+        del request.session['cart']
+    return redirect('cart_detail')
