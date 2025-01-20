@@ -1,0 +1,12 @@
+
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h1>{{ trip.name }}</h1>
+<p>{{ trip.description }}</p>
+<p>Cena: {{ trip.price }} PLN</p>
+<a href="{% url 'trip_list' %}">Powrót do listy</a>
+
+{% endblock %}
