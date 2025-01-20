@@ -222,3 +222,16 @@ def trip_list(request):
 def trip_detail(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id)
     return render(request, 'trips/trip_detail.html', {'trip': trip})
+
+def trips_view(request):
+    trips = [
+        {
+            'id': 1,
+            'name': 'Wycieczka do Australii',
+            'description': 'Ekscytująca wycieczka, podczas której będziesz mógł serfować na pięknych plażach Australii.',
+            'price': 15000
+        },
+        # Dodaj inne wycieczki, jeśli są.
+    ]
+    return render(request, 'trips.html', {'trips': trips})
+

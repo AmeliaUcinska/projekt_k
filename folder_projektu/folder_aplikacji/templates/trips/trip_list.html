@@ -4,16 +4,112 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
+<style>
+    body {
+    background-color: #f7f7f7;
+    font-family: serif, sans-serif;
+    color: #212121;
+    margin: 25px;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #121212;
+    font-family: "Garamond", serif;
+    margin: 20px 0 10px;
+}
+
+.travel-tips {
+    background-color: #c2f1f2; 
+    padding: 20px;
+    border-radius: 10px; 
+    list-style: none; 
+    margin: 20px 0; 
+}
+
+
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+a {
+    color: #ff56cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul, ol {
+    margin: 10px 0 10px 20px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+img {
+    display: block; /* Ustawienie obrazu jako elementu blokowego */
+    margin: 0 auto; /* Wyśrodkowanie obrazu */
+    max-width: 100%; /* Dostosowanie rozmiaru obrazu do szerokości rodzica */
+    height: auto; /* Zachowanie proporcji obrazu */
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.col {
+    background-color: #ffd4e5; 
+    padding: 20px;
+    border-radius: 10px; 
+    margin: 10px; 
+    text-align: center;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+</style>
 <h1>Wycieczki</h1>
 <ul>
     {% for trip in trips %}
     <li>
         <h2>{{ trip.name }}</h2>
+        <p>Australia</p>
         <p>{{ trip.description|truncatewords:20 }}</p>
         <p>Cena: {{ trip.price }} PLN</p>
         <a href="{% url 'trip_detail' trip.id %}">Zobacz więcej</a>
     </li>
     {% endfor %}
 </ul>
+<div class="travel-tips-section">
+    <h3>Australia</h3>
+    <ul class="travel-tips">
+        <li>Przygotuj się na niezapomnianą przygodę na kontynencie pełnym kontrastów! Wycieczka do Australii to doskonała okazja, by odkryć niezwykłe krajobrazy, zapierające dech w piersiach plaże i fascynującą kulturę.</li>
+</div>
+<img src="{% static 'images/Projekt bez nazwy.jpg' %}" alt="wycieczka">
+    <h3>Malediwy</h3>
+    <div class="travel-tips-section">
+    <div class="travel-tips">
+        <li>Zanurz się w luksusie i odkryj tropikalny raj na Malediwach! Wycieczka na te malownicze wyspy to idealna okazja, by odpocząć w otoczeniu krystalicznie czystych wód i białych, piaszczystych plaż.</li>
+    </ul>
+</div>
+<img src="{% static 'images/beach-666122_1280.jpg' %}" alt="wycieczka">
+    <h3>Włochy</h3>
+    <div class="travel-tips-section">
+    <div class="travel-tips">
+        <li>Zachwyć się pięknem Włoch, kraju pełnego historii, kultury i niezapomnianych smaków! Od majestatycznych zabytków po malownicze wybrzeża, ta wycieczka to podróż przez najważniejsze punkty włoskiej tradycji i sztuki..</li>
+    </ul>
+</div>
+<img src="{% static 'images/Projekt bez nazwy (2).jpg' %}" alt="wycieczka">
+</ul>
 {% endblock %}
+
+
+
+ 
