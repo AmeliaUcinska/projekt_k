@@ -80,7 +80,7 @@ img {
     {% for trip in trips %}
     <li>
         <h2>{{ trip.name }}</h2>
-        <p>Australia</p>
+        <p>Wycieczka </p>
         <p>{{ trip.description|truncatewords:20 }}</p>
         <p>Cena: {{ trip.price }} PLN</p>
         <a href="{% url 'trip_detail' trip.id %}">Zobacz więcej</a>
@@ -90,20 +90,47 @@ img {
 <div class="travel-tips-section">
     <h3>Australia</h3>
     <ul class="travel-tips">
-        <li>Przygotuj się na niezapomnianą przygodę na kontynencie pełnym kontrastów! Wycieczka do Australii to doskonała okazja, by odkryć niezwykłe krajobrazy, zapierające dech w piersiach plaże i fascynującą kulturę.</li>
+        <li>Opera House w Sydney
+        <li> Sydney Harbour Bridge (spacer lub wspinaczka)</li>
+        <li> Bondi Beach</li>
+        <li>Great Barrier Reef (nurkowanie lub rejs)</li>
+        <li> Blue Mountains National Park</li>
+        <li>Uluru (Ayers Rock) w Parku Narodowym Uluru-Kata Tjuta</li>
+        <li>Royal Botanic Gardens w Sydney</li>
+        <li>Fraser Island (największa piaszczysta wyspa na świecie)</li>
+        <li> Whitsunday Islands</li>
+        <li>Tasmania’s Cradle Mountain</li>
 </div>
 <img src="{% static 'images/Projekt bez nazwy.jpg' %}" alt="wycieczka">
     <h3>Malediwy</h3>
     <div class="travel-tips-section">
     <div class="travel-tips">
-        <li>Zanurz się w luksusie i odkryj tropikalny raj na Malediwach! Wycieczka na te malownicze wyspy to idealna okazja, by odpocząć w otoczeniu krystalicznie czystych wód i białych, piaszczystych plaż.</li>
+        <li>Atol Baa (Rezerwat biosfery UNESCO)</li>
+        <li>Maafushi Island (lokalne wyspy z pięknymi plażami)</li>
+        <li>Sun Island Resort</li>
+        <li>Manta Point (idealne do nurkowania)</li>
+        <li>Banana Reef (jedno z najstarszych miejsc do nurkowania)</li>
+        <li>Fihalhohi Island (spokojna wyspa idealna na relaks)</li>
+        <li>Diving w Ari Atoll (spotkania z rekinami)</li>
+        <li>Visiting Male (stolica Malediwów)</li>
+        <li>Maafushi Island (typowa wyspa z malowniczymi plażami)</li>
+        <li>Hinnavaru Island (idealne miejsce do uprawiania sportów wodnych)</li>
     </ul>
 </div>
 <img src="{% static 'images/beach-666122_1280.jpg' %}" alt="wycieczka">
     <h3>Włochy</h3>
     <div class="travel-tips-section">
     <div class="travel-tips">
-        <li>Zachwyć się pięknem Włoch, kraju pełnego historii, kultury i niezapomnianych smaków! Od majestatycznych zabytków po malownicze wybrzeża, ta wycieczka to podróż przez najważniejsze punkty włoskiej tradycji i sztuki..</li>
+        <li>Koloseum w Rzymie</li>
+        <li>Watykan (Bazylika Świętego Piotra, Kaplica Sykstyńska)</li>
+        <li>Wieża w Pizie</li>
+        <li>Wielki Kanał w Wenecji (rejs gondolą)</li>
+        <li>Pompeje (ruiny starożytnego miasta)</li>
+        <li>Amalfi Coast (klify, winnice i plaże)</li>
+        <li>Willa d'Este w Tivoli (ogrody i pałace)</li>
+        <li>Florencja (Galeria Uffizi, Katedra Santa Maria del Fiore)</li>
+        <li>Cinque Terre (pięć uroczych wiosek nad Morzem Liguryjskim)</li>
+        <li>Toskania (winnice, średniowieczne miasteczka)</li>
     </ul>
 </div>
 <img src="{% static 'images/Projekt bez nazwy (2).jpg' %}" alt="wycieczka">
