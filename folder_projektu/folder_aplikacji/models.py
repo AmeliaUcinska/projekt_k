@@ -79,4 +79,18 @@ class Trip(models.Model):
     def __str__(self):
         return self.name
 
+class Opinion(models.Model):
+    name = models.CharField(max_length=100)  # Imię autora
+    content = models.TextField()  # Treść opinii
+    created_at = models.DateTimeField(default=now)  # Data dodania
 
+    def __str__(self):
+        return f"{self.name} - {self.created_at.strftime('%Y-%m-%d')}"
+    
+class UserImage(models.Model):
+    title = models.CharField(max_length=100)  # Krótki opis zdjęcia
+    image = models.ImageField(upload_to='images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image uploaded on {self.uploaded_at}"

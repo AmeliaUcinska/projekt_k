@@ -1,0 +1,12 @@
+<h1>Galeria zdjęć</h1>
+
+<ul>
+    {% for image in images %}
+        <li>
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" width="300">
+            <p>{{ image.title }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'upload_image' %}">Prześlij nowe zdjęcie</a>
