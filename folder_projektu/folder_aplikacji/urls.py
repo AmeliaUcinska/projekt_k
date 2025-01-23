@@ -26,5 +26,9 @@ urlpatterns = [
     path('trips/', views.trip_list, name='trip_list'),
     path('trips/<int:trip_id>/', views.trip_detail, name='trip_detail'),
     path('trips/', views.trips_view, name='trips_list'),
+    path('opinions/', views.opinions_view, name='opinions'),
+    path('upload_image/', views.upload_image_view, name='upload_image'),
+    path('image_gallery/', views.image_gallery_view, name='image_gallery'),
+    path('register/', views.register, name='register'),
 
 ]
