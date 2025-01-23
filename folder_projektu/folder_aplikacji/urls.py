@@ -2,6 +2,8 @@
 
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path("", views.home, name="home"), #strona domyslna
@@ -30,5 +32,6 @@ urlpatterns = [
     path('upload_image/', views.upload_image_view, name='upload_image'),
     path('image_gallery/', views.image_gallery_view, name='image_gallery'),
     path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 
 ]
