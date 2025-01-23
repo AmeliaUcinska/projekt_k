@@ -29,5 +29,6 @@ urlpatterns = [
     path('opinions/', views.opinions_view, name='opinions'),
     path('upload_image/', views.upload_image_view, name='upload_image'),
     path('image_gallery/', views.image_gallery_view, name='image_gallery'),
+    path('register/', views.register, name='register'),
 
 ]

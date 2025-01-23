@@ -270,3 +270,20 @@ def upload_image_view(request):
 def image_gallery_view(request):
     images = UserImage.objects.all()  # Pobierz wszystkie zdjęcia
     return render(request, 'image_gallery.html', {'images': images})
+
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
+from django.contrib import messages
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Utworzono konto dla {username}. Możesz się teraz zalogować.')
+            return redirect('login')  # Zmień na nazwę Twojego widoku logowania
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form})
+

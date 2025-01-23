@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+
+body {
+    background-color: #f7f7f7;
+    font-family: serif, sans-serif;
+    color: #212121;
+    margin: 25px;
+    padding: 0;
+}
+
+/* Basic text formatting */
+h1, h2, h3, h4, h5, h6 {
+    color: #121212;
+    font-family: "Garamond", serif;
+    margin: 20px 0 10px;
+}
+
+.travel-tips {
+    background-color: #c2f1f2; 
+    padding: 20px;
+    border-radius: 10px; 
+    list-style: none; 
+    margin: 20px 0; 
+}
+
+.travel-tips li {
+    margin: 10px 0; 
+}
+
+.travel-tips-title {
+    color: #022829; 
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* Links */
+a {
+    color: #ff56cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja</title>
+</head>
+<body>
+    <h2>Rejestracja</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zarejestruj</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
