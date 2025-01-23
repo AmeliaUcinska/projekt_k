@@ -287,3 +287,9 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def user_profile(request):
+    return render(request, 'profile.html')
+

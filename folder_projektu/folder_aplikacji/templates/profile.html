@@ -43,16 +43,17 @@ a:hover {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logowanie</title>
+    <title>Profil użytkownika</title>
 </head>
 <body>
-    <h2>Logowanie</h2>
-    <form method="post">
+    <h1>Witaj, {{ user.username }}!</h1>
+    <p>Email: {{ user.email }}</p>
+    <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        <button type="submit" class="btn btn-primary">Wyloguj się</button>
     </form>
 </body>
 </html>
+
 
 {% endblock %}
