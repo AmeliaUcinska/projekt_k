@@ -26,8 +26,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px 0; 
 }
 
-
-
 p {
     line-height: 1.6;
     margin: 10px 0;
@@ -65,33 +63,54 @@ img {
     border-radius: 10px; 
     margin: 10px; 
     text-align: center;
-    }
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 </style>
+
 <h1>Koszyk</h1>
+{% if cart|length > 0 %}
 <table>
     <thead>
         <tr>
-            <th>Wycieczka</th>
-            <th>Ilość</th>
+            <th>Produkt</th>
             <th>Cena</th>
-            <th>Razem</th>
+            <th>Ilość</th>
+            <th>Łączna cena</th>
+            <th>Usuń</th>
         </tr>
     </thead>
     <tbody>
         {% for item in cart %}
-        <tr>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.total_price }}</td>
-        </tr>
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.price }} PLN</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total_price }} PLN</td>
+                <td>
+                    {% if item.product.id %}
+                        <form action="{% url 'cart_remove' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Usuń</button>
+                        </form>
+                    {% else %}
+                        <p>Brak ID produktu</p>
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
-<p>Suma: {{ cart.get_total_price }}</p>
+<p>Całkowita cena: {{ cart.get_total_price }} PLN</p>
+<form action="{% url 'cart_clear' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Wyczyść koszyk</button>
+</form>
+<a href="{% url 'trip_list' %}">Kontynuuj zakupy</a>
+{% else %}
+    <p>Twój koszyk jest pusty. <a href="{% url 'trip_list' %}">Wróć do zakupów</a>.</p>
+{% endif %}
 {% endblock %}

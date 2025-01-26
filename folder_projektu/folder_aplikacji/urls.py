@@ -2,6 +2,10 @@
 
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
+
 
 urlpatterns = [
     path("", views.home, name="home"), #strona domyslna
@@ -21,14 +25,20 @@ urlpatterns = [
     path('stanowisko/<int:pk>/members', views.StanowiskoMemberView.as_view()),
     path('cart/add/<int:product_id>/', views.cart_add, name='cart_add'),
     path('cart/remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
+    path('cart/add/<int:product_id>/', views.cart_add, name='cart_add'),
+    path('cart/remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
+    path('cart/detail/', views.cart_detail, name='cart_detail'),
     path('cart/', views.cart_detail, name='cart_detail'),
     path('cart/clear/', views.cart_clear, name='cart_clear'),
     path('trips/', views.trip_list, name='trip_list'),
     path('trips/<int:trip_id>/', views.trip_detail, name='trip_detail'),
     path('trips/', views.trips_view, name='trips_list'),
     path('opinions/', views.opinions_view, name='opinions'),
-    path('upload_image/', views.upload_image_view, name='upload_image'),
+    path('upload_image/', login_required(views.upload_image_view), name='upload_image'),
     path('image_gallery/', views.image_gallery_view, name='image_gallery'),
     path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('profile/', views.user_profile, name='profile'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
 ]

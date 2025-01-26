@@ -83,8 +83,18 @@ img {
         <p>Wycieczka </p>
         <p>{{ trip.description|truncatewords:20 }}</p>
         <p>Cena: {{ trip.price }} PLN</p>
+        {% if trip.available %}
         <a href="{% url 'trip_detail' trip.id %}">Zobacz więcej</a>
+        <form action="{% url 'cart_add' trip.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Dodaj do koszyka</button>
+        </form>
+        {% else %}
+        <p>Wycieczka niedostępna</p>
+        {% endif %}
     </li>
+    {% empty %}
+    <p>Brak dostępnych wycieczek.</p>
     {% endfor %}
 </ul>
 <div class="travel-tips-section">

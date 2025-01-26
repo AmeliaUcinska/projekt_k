@@ -12,6 +12,7 @@ from .models import Osoba, Person, Product, Stanowisko, Team
 from .serializers import OsobaSerializer, PersonSerializer, StanowiskoSerializer
 from django.http import Http404, HttpResponse
 from .cart import Cart
+from .models import Trip  
 import datetime
 from .models import Trip
 
@@ -194,13 +195,13 @@ def home(response):
 
 def cart_add(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Trip, id=product_id)  
     cart.add(product=product, quantity=1)
     return redirect('cart_detail')
 
 def cart_remove(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Trip, id=product_id)
     cart.remove(product)
     return redirect('cart_detail')
 
@@ -255,13 +256,15 @@ def opinions_view(request):
 from django.shortcuts import render, redirect
 from .forms import UserImageForm
 from .models import UserImage
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def upload_image_view(request):
     if request.method == 'POST':
-        form = UserImageForm(request.POST, request.FILES)  # Obsługa przesłanych plików
+        form = UserImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('image_gallery')  # Przekierowanie do galerii zdjęć
+            return redirect('image_gallery')
     else:
         form = UserImageForm()
 
@@ -286,4 +289,13 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def user_profile(request):
+    return render(request, 'profile.html')
+
+
+
 
