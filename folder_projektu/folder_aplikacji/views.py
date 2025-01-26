@@ -256,13 +256,15 @@ def opinions_view(request):
 from django.shortcuts import render, redirect
 from .forms import UserImageForm
 from .models import UserImage
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def upload_image_view(request):
     if request.method == 'POST':
-        form = UserImageForm(request.POST, request.FILES)  # Obsługa przesłanych plików
+        form = UserImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('image_gallery')  # Przekierowanie do galerii zdjęć
+            return redirect('image_gallery')
     else:
         form = UserImageForm()
 

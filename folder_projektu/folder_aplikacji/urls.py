@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
@@ -33,7 +34,7 @@ urlpatterns = [
     path('trips/<int:trip_id>/', views.trip_detail, name='trip_detail'),
     path('trips/', views.trips_view, name='trips_list'),
     path('opinions/', views.opinions_view, name='opinions'),
-    path('upload_image/', views.upload_image_view, name='upload_image'),
+    path('upload_image/', login_required(views.upload_image_view), name='upload_image'),
     path('image_gallery/', views.image_gallery_view, name='image_gallery'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
