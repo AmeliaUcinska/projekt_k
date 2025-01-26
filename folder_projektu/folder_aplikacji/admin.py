@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Trip
+from .models import Product, Trip
 # Register your models here.
 from .models import Team, Person, Osoba, Stanowisko
 
@@ -24,7 +24,10 @@ class OsobaAdmin(admin.ModelAdmin):
     list_filter = ["stanowisko", "data_dodania"]
 admin.site.register(Osoba, OsobaAdmin)
 
-
+@admin.register(Product)
+class TripAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'description')  # Pola wyświetlane na liście
+    search_fields = ('name',)  # Możliwość wyszukiwania po nazwie
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'description')  # Pola wyświetlane na liście
