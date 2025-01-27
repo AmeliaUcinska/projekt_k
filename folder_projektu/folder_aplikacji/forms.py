@@ -27,3 +27,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']  # Tylko email, bo username jest nieedytowalne
