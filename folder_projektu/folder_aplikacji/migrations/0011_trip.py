@@ -17,7 +17,6 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=200, verbose_name='Nazwa wycieczki')),
                 ('description', models.TextField(verbose_name='Opis')),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Cena')),
-                ('available', models.BooleanField(default=True, verbose_name='Dostępność')),
             ],
         ),
     ]

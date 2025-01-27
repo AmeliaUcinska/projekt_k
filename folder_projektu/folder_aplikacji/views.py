@@ -217,7 +217,7 @@ def cart_clear(request):
 
 
 def trip_list(request):
-    trips = Trip.objects.filter(available=True)  # Pobiera tylko dostępne wycieczki
+    trips = Trip.objects.all()  # Pobiera tylko dostępne wycieczki
     return render(request, 'trips/trip_list.html', {'trips': trips})
 
 def trip_detail(request, trip_id):

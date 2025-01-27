@@ -65,7 +65,6 @@ class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nazwa wycieczki")
     description = models.TextField(verbose_name="Opis")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Cena")
-    available = models.BooleanField(default=True, verbose_name="Dostępność")
     
     def __str__(self):
         return self.name
@@ -74,7 +73,6 @@ class Trip(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nazwa wycieczki")
     description = models.TextField(verbose_name="Opis")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Cena")
-    available = models.BooleanField(default=True, verbose_name="Dostępność")
 
     def __str__(self):
         return self.name
