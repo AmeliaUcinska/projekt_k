@@ -43,31 +43,26 @@ a:hover {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil użytkownika</title>
+    <title>Szczegóły zamówienia</title>
 </head>
 <body>
-    <h1>Witaj, {{ user.username }}!</h1>
-    <p>Email: {{ user.email }}</p>
-    <h2>Historia zamówień:</h2>
-    {% if orders %}
+    <h1>Zamówienie nr {{ order.id }}</h1>
+
+    <p><strong>Użytkownik:</strong> {{ order.user.username }}</p>
+    <p><strong>Data utworzenia:</strong> {{ order.created_at }}</p>
+    <p><strong>Całkowita cena:</strong> {{ order.total_price }} zł</p>
+
+    {% for price, items in grouped_products.items %}
+        <h3>Produkty w cenie {{ price }} zł:</h3>
         <ul>
-            {% for order in orders %}
-                <li>
-                    <a href="{% url 'order_detail' order.id %}">Zamówienie nr {{ order.id }}</a> - 
-                    Całkowita cena: {{ order.total_price }} zł - 
-                    Data utworzenia: {{ order.created_at }}
-                </li>
+            {% for item in items %}
+                <li>{{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }} zł</li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>Nie masz jeszcze żadnych zamówień.</p>
-    {% endif %}
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Wyloguj się</button>
-    </form>
+    {% endfor %}
+
+    <a href="{% url 'cart_detail' %}">Powróć do koszyka</a>
 </body>
 </html>
-
 
 {% endblock %}

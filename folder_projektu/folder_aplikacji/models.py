@@ -1,7 +1,11 @@
+from collections import defaultdict
 from datetime import date
 from django.db import models
+from django.shortcuts import get_object_or_404, render
 from django.utils.timezone import now
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
+
 
 # Create your models here.
 
@@ -64,7 +68,12 @@ class Stanowisko(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nazwa wycieczki")
     description = models.TextField(verbose_name="Opis")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Cena")
+    price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        verbose_name="Cena", 
+        validators=[MinValueValidator(1)]  # Minimalna wartość to 1
+    )
     
     def __str__(self):
         return self.name
@@ -92,3 +101,32 @@ class UserImage(models.Model):
 
     def __str__(self):
         return f"Image uploaded on {self.uploaded_at}"
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Zamówienie {self.id} - {self.user.username}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} - {self.price} PLN"
+    
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    
+    grouped_products = defaultdict(list)
+    for item in order.items.all():
+        grouped_products[item.product.price].append(item)
+    
+    return render(request, 'order_detail.html', {
+        'order': order,
+        'grouped_products': grouped_products,
+    })

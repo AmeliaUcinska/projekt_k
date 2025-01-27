@@ -40,5 +40,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('profile/', views.user_profile, name='profile'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('finalize-purchase/', views.finalize_purchase, name='finalize_purchase'),
+    path('order/<int:order_id>/', views.order_detail, name='order_detail'),
 
 ]
