@@ -8,7 +8,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Osoba, Person, Product, Stanowisko, Team
+from .models import Order, OrderItem, Osoba, Person, Product, Stanowisko, Team
 from .serializers import OsobaSerializer, PersonSerializer, StanowiskoSerializer
 from django.http import Http404, HttpResponse
 from .cart import Cart
@@ -232,7 +232,7 @@ def trips_view(request):
             'description': 'Ekscytująca wycieczka, podczas której będziesz mógł serfować na pięknych plażach Australii.',
             'price': 15000
         },
-        # Dodaj inne wycieczki, jeśli są.
+        
     ]
     return render(request, 'trips.html', {'trips': trips})
 
@@ -285,7 +285,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Utworzono konto dla {username}. Możesz się teraz zalogować.')
-            return redirect('login')  # Zmień na nazwę Twojego widoku logowania
+            return redirect('login')  
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -294,7 +294,29 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def user_profile(request):
-    return render(request, 'profile.html')
+    orders = Order.objects.filter(user=request.user)  # Pobierz zamówienia użytkownika
+    return render(request, 'profile.html', {'user': request.user, 'orders': orders})
+
+@login_required
+def finalize_purchase(request):
+    if request.method == 'POST':
+        cart = Cart(request)
+        total_price = cart.get_total_price() 
+        order = Order.objects.create(
+            user=request.user,  
+            total_price=total_price,  
+        )
+
+        
+
+        cart.clear()
+
+        return redirect('order_detail', order_id=order.id)
+
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'order_detail.html', {'order': order})
 
 
 
