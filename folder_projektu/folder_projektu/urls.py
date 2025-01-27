@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from folder_aplikacji import views
 from django.contrib import admin
 from django.urls import path
 
@@ -33,7 +34,7 @@ urlpatterns = [
     path('folder_aplikacji/', include('folder_aplikacji.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-     path('', include("folder_aplikacji.urls")), #strona domyslna
+    path('', include("folder_aplikacji.urls")), #strona domyslna
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -43,5 +43,9 @@ urlpatterns = [
     path('finalize-purchase/', views.finalize_purchase, name='finalize_purchase'),
     path('order/<int:order_id>/', views.order_detail, name='order_detail'),
     path('edit-profile/', views.edit_profile, name='edit_profile'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('delete-opinion/<int:opinion_id>/', views.delete_opinion, name='delete_opinion'),
+    path('delete-image/<int:image_id>/', views.delete_image, name='delete_image'),
+
 
 ]
