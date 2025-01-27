@@ -325,9 +325,45 @@ def edit_profile(request):
         form = UserProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Możesz przekierować na stronę profilu
+            return redirect('profile')  
     else:
         form = UserProfileForm(instance=request.user)
     
     return render(request, 'edit_profile.html', {'form': form})
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Opinion, UserImage
+
+
+
+def is_admin(user):
+    return user.is_superuser
+
+@login_required
+def admin_dashboard(request):
+    if not request.user.is_superuser:
+        return redirect('')  
+    
+    opinions = Opinion.objects.all()  # Pobierz wszystkie opinie
+    images = UserImage.objects.all()  # Pobierz wszystkie obrazy
+    return render(request, 'admin_dashboard.html', {'opinions': opinions, 'images': images})
+
+# Usuwanie opinii
+@login_required
+@user_passes_test(is_admin)
+def delete_opinion(request, opinion_id):
+    opinion = get_object_or_404(Opinion, id=opinion_id)
+    opinion.delete()
+    return redirect('admin_dashboard')  
+
+# Usuwanie obrazu
+
+@login_required
+@user_passes_test(is_admin)
+def delete_image(request, image_id):
+    image = get_object_or_404(UserImage, id=image_id)
+    image.delete()
+    return redirect('admin_dashboard') 
+
 

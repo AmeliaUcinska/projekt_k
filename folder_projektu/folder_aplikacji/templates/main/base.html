@@ -27,21 +27,25 @@
                     </li>
 
                     {% if user.is_authenticated %}
-            
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/profile">Profil: {{ user.username }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/profile"></a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/profile">Profil: {{ user.username }}</a>
+                        </li>
                     {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/login">Zaloguj się</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/register">Rejestracja</a>
+                        </li>
+                    {% endif %}
+                    
+
+                    {% if user.is_superuser %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Zaloguj się</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Rejestracja</a>
+                        <a class="nav-link active" href="{% url 'admin_dashboard' %}">Panel Administratora</a>
                     </li>
                     {% endif %}
+                    
                 </ul>
             </div>
         </div>
@@ -55,3 +59,4 @@
     </div>
 </body>
 </html>
+
