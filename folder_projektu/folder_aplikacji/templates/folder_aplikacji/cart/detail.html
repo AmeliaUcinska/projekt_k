@@ -109,12 +109,13 @@ table {
     {% csrf_token %}
     <button type="submit">Wyczyść koszyk</button>
 </form>
-<a href="{% url 'trip_list' %}">Kontynuuj zakupy</a>
-{% else %}
-    <p>Twój koszyk jest pusty. <a href="{% url 'trip_list' %}">Wróć do zakupów</a>.</p>
-{% endif %}
 <form action="{% url 'finalize_purchase' %}" method="post">
     {% csrf_token %}
     <button type="submit">Sfinalizuj zakup</button>
 </form>
+<a href="{% url 'trip_list' %}">Kontynuuj zakupy</a>
+{% else %}
+    <p>Twój koszyk jest pusty. <a href="{% url 'trip_list' %}">Wróć do zakupów</a>.</p>
+{% endif %}
+
 {% endblock %}

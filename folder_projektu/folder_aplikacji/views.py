@@ -239,7 +239,7 @@ def trips_view(request):
 
 from django.shortcuts import redirect
 from .models import Opinion
-from .forms import OpinionForm
+from .forms import OpinionForm, UserProfileForm
 
 def opinions_view(request):
     if request.method == "POST":
@@ -319,5 +319,15 @@ def order_detail(request, order_id):
     return render(request, 'order_detail.html', {'order': order})
 
 
-
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Możesz przekierować na stronę profilu
+    else:
+        form = UserProfileForm(instance=request.user)
+    
+    return render(request, 'edit_profile.html', {'form': form})
 

@@ -63,7 +63,12 @@ a:hover {
         <p>Nie masz jeszcze żadnych zamówień.</p>
     {% endif %}
     <form method="post" action="{% url 'logout' %}">
+        <br>
+        <br>
         {% csrf_token %}
+        <a href="{% url 'edit_profile' %}">Edytuj profil</a>
+        <br>
+        <br>
         <button type="submit" class="btn btn-primary">Wyloguj się</button>
     </form>
 </body>
