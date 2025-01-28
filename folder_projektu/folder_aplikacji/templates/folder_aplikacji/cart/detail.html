@@ -109,13 +109,21 @@ table {
     {% csrf_token %}
     <button type="submit">Wyczyść koszyk</button>
 </form>
+
+
+{% if user.is_authenticated %}
 <form action="{% url 'finalize_purchase' %}" method="post">
     {% csrf_token %}
     <button type="submit">Sfinalizuj zakup</button>
 </form>
+{% else %}
+<p>Aby sfinalizować zakup, <a href="{% url 'login' %}">zaloguj się</a>.</p>
+{% endif %}
+
 <a href="{% url 'trip_list' %}">Kontynuuj zakupy</a>
 {% else %}
     <p>Twój koszyk jest pusty. <a href="{% url 'trip_list' %}">Wróć do zakupów</a>.</p>
 {% endif %}
+
 
 {% endblock %}

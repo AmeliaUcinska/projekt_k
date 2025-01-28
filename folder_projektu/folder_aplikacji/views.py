@@ -1,3 +1,4 @@
+from collections import defaultdict
 from django.shortcuts import get_object_or_404, redirect, render
 
 # Create your views here.
@@ -313,10 +314,6 @@ def finalize_purchase(request):
 
         return redirect('order_detail', order_id=order.id)
 
-@login_required
-def order_detail(request, order_id):
-    order = get_object_or_404(Order, id=order_id)
-    return render(request, 'order_detail.html', {'order': order})
 
 
 @login_required
@@ -367,3 +364,14 @@ def delete_image(request, image_id):
     return redirect('admin_dashboard') 
 
 
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    
+    grouped_products = defaultdict(list)
+    for item in order.items.all():
+        grouped_products[item.product.price].append(item)
+    
+    return render(request, 'order_detail.html', {
+        'order': order,
+        'grouped_products': grouped_products,
+    })

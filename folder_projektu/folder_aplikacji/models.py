@@ -78,13 +78,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-class Trip(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Nazwa wycieczki")
-    description = models.TextField(verbose_name="Opis")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Cena")
 
-    def __str__(self):
-        return self.name
 
 class Opinion(models.Model):
     name = models.CharField(max_length=100)  # Imię autora
@@ -130,3 +124,12 @@ def order_detail(request, order_id):
         'order': order,
         'grouped_products': grouped_products,
     })
+
+
+class Trip(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Nazwa wycieczki")
+    description = models.TextField(verbose_name="Opis")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Cena")
+
+    def __str__(self):
+        return self.name
