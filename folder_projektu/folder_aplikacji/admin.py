@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Product, Trip
+
+from .forms import UserImageForm
+from .models import Product, Trip, UserImage
 # Register your models here.
 from .models import Team, Person, Osoba, Stanowisko
 
@@ -26,9 +28,12 @@ admin.site.register(Osoba, OsobaAdmin)
 
 @admin.register(Product)
 class TripAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'description')  # Pola wyświetlane na liście
-    search_fields = ('name',)  # Możliwość wyszukiwania po nazwie
-@admin.register(Trip)
-class TripAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'description')  # Pola wyświetlane na liście
-    search_fields = ('name',)  # Możliwość wyszukiwania po nazwie
+    list_display = ('name', 'price', 'description')  
+    search_fields = ('name',)  
+
+@admin.register(UserImage)
+class UserImageAdmin(admin.ModelAdmin):
+    form = UserImageForm  
+    list_display = ('title', 'image', 'uploaded_at')  
+    search_fields = ('title',)  
+    list_filter = ('uploaded_at',)  
